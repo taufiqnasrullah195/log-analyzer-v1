@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.locks/
+*.bak
+.env
+logs/
+auto_resolve_audit.jsonl
+reports/
+gradio_tmp/

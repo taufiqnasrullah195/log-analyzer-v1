@@ -1,0 +1,8 @@
+Oct 23 18:01:02.145: %LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+Oct 23 18:01:03.201: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+Oct 23 18:01:09.442: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+Oct 23 18:01:10.508: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+Oct 23 18:01:15.887: %LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+Oct 23 18:01:16.943: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+Oct 23 18:01:22.104: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+Oct 23 18:01:23.170: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up

@@ -1,0 +1,4 @@
+Oct 23 07:58:44 edge-rtr02 rpd[1892]: BGP_PEER_DOWN: peer 203.0.113.5 (AS 65010) state changed from Established to Idle, reason: Hold timer expired
+Oct 23 07:58:44 edge-rtr02 rpd[1892]: bgp_peer_down: peer 203.0.113.5+179 (instance master) down
+Oct 23 07:59:14 edge-rtr02 rpd[1892]: BGP_PEER_DOWN: peer 203.0.113.5 (AS 65010) state changed from Connect to Idle, reason: Connect retry timer expired
+Oct 23 08:02:31 edge-rtr02 rpd[1892]: BGP_PEER_DOWN: peer 203.0.113.5 (AS 65010) state changed from Connect to Idle, reason: Connect retry timer expired

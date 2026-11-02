@@ -1,0 +1,48 @@
+============================================================
+SKENARIO TEST — generate log, paste ke LogAnalyzer_V1
+============================================================
+
+--- SKENARIO 1: Port Flapping (kayak sample V1) -------------
+Di SW1 CLI:
+  enable
+  configure terminal
+  interface fastEthernet0/1
+  shutdown
+  no shutdown
+  shutdown
+  no shutdown
+  shutdown
+  no shutdown
+-> Cek Syslog di Server: 6 event %LINK + %LINEPROTO masuk
+-> Copy semua, paste ke http://127.0.0.1:7860, Analyze
+
+--- SKENARIO 2: Login Failure -------------------------------
+Dari PC manapun (Desktop -> Command Prompt):
+  telnet 192.168.1.2
+  (masukkan password SALAH 3x)
+-> SW1 kirim %SEC_LOGIN-4-LOGIN_FAILED ke syslog server
+
+--- SKENARIO 3: STP Topology Change --------------------------
+Cabut kabel uplink SW1-SW2 (klik kabel, Delete), tunggu 10 dtk,
+pasang lagi
+-> %SPANTREE topology change events di syslog
+
+--- SKENARIO 4: Duplex Mismatch ------------------------------
+SW1:
+  interface fastEthernet0/2
+  speed 100
+  duplex full
+(PC/lawan tetap auto)
+-> %CDP-4-DUPLEX_MISMATCH muncul berkala di syslog
+
+--- SKENARIO 5: Interface Down (device mati) -----------------
+Matikan PC yang tersambung ke SW1 Fa0/2 (power off di tab Physical)
+-> %LINK-5-CHANGED down + %LINEPROTO down
+
+============================================================
+CARA COPY LOG DARI SYSLOG SERVER
+============================================================
+Server -> tab Services -> Syslog (On)
+-> Log muncul real-time di panel
+-> Select text -> Ctrl+C -> paste ke LogAnalyzer UI
+-> Pilih bahasa -> Analyze

@@ -1,0 +1,43 @@
+! ============================================================
+! SW1 — Access Switch (Cisco 2960)
+! Paste seluruh blok ini di CLI setelah: enable / configure terminal
+! ============================================================
+hostname SW1
+enable secret cisco123
+!
+! --- Syslog ke server ---
+logging 192.168.1.10
+logging trap informational
+logging console informational
+service timestamps log datetime msec
+!
+! --- VLAN & uplink ---
+vlan 10
+ name USERS
+!
+interface range fastEthernet0/1 - 2
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface gigabitEthernet0/1
+ description UPLINK-TO-SW2
+ switchport mode trunk
+!
+! --- Management IP ---
+interface vlan 10
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+!
+! --- VTY (buat test login failure) ---
+line vty 0 4
+ password telnet123
+ login
+ transport input telnet
+!
+line con 0
+ password console123
+ login
+!
+end
+copy running-config startup-config

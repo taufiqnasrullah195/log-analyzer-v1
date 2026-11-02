@@ -1,0 +1,3 @@
+Oct 23 18:05:11.332: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: admin] [Source: 192.168.1.11] [localport: 23] [Reason: Login Authentication Failed] at 18:05:11 UTC Thu Oct 23 2026
+Oct 23 18:05:19.018: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: admin] [Source: 192.168.1.11] [localport: 23] [Reason: Login Authentication Failed] at 18:05:19 UTC Thu Oct 23 2026
+Oct 23 18:05:26.774: %SEC_LOGIN-4-LOGIN_FAILED: Login failed [user: admin] [Source: 192.168.1.11] [localport: 23] [Reason: Login Authentication Failed] at 18:05:26 UTC Thu Oct 23 2026

@@ -1,0 +1,30 @@
+! ============================================================
+! SW2 — Distribution Switch (Cisco 2960)
+! enable / configure terminal, paste semua
+! ============================================================
+hostname SW2
+enable secret cisco123
+!
+logging 192.168.1.10
+logging trap informational
+service timestamps log datetime msec
+!
+vlan 10
+ name USERS
+!
+interface gigabitEthernet0/1
+ description UPLINK-TO-SW1
+ switchport mode trunk
+!
+interface fastEthernet0/1
+ description TO-SYSLOG-SERVER
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface vlan 10
+ ip address 192.168.1.3 255.255.255.0
+ no shutdown
+!
+end
+copy running-config startup-config

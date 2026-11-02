@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LogAnalyzer V1 — Mockup</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',system-ui,sans-serif; }
+  body { background:#0f1117; color:#e6e8ee; min-height:100vh; }
+  header { display:flex; align-items:center; justify-content:space-between;
+           padding:14px 28px; background:#161a23; border-bottom:1px solid #262c3a; }
+  .logo { font-size:20px; font-weight:700; }
+  .logo span { color:#4f8cff; }
+  .badge { font-size:12px; background:#1e2532; border:1px solid #2e3749; padding:4px 10px; border-radius:20px; color:#9aa5b8; }
+  main { display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:24px 28px; max-width:1280px; margin:0 auto; }
+  .panel { background:#161a23; border:1px solid #262c3a; border-radius:12px; padding:18px; }
+  .panel h3 { font-size:13px; text-transform:uppercase; letter-spacing:1px; color:#8b94a7; margin-bottom:12px; }
+  textarea { width:100%; height:340px; background:#0c0e13; border:1px solid #2a3140; border-radius:8px;
+             color:#c8d0e0; font-family:'Cascadia Code',monospace; font-size:12.5px; padding:14px; resize:none; }
+  .controls { display:flex; gap:10px; margin-top:12px; align-items:center; flex-wrap:wrap; }
+  select { background:#1e2532; color:#e6e8ee; border:1px solid #2e3749; border-radius:8px; padding:8px 12px; font-size:13px; }
+  .btn { background:#4f8cff; border:none; color:#fff; font-weight:600; padding:10px 22px; border-radius:8px; cursor:pointer; font-size:14px; }
+  .btn.ghost { background:transparent; border:1px solid #2e3749; color:#9aa5b8; }
+  .detect { margin-top:10px; font-size:12.5px; color:#7ee0a3; }
+  .result-block { margin-bottom:14px; }
+  .result-block h4 { font-size:13px; color:#4f8cff; margin-bottom:6px; }
+  .result-block p, .result-block li { font-size:13.5px; line-height:1.55; color:#c8d0e0; }
+  .result-block ul { padding-left:18px; }
+  .sev { display:inline-block; padding:3px 12px; border-radius:6px; font-weight:700; font-size:12px; }
+  .sev.warn { background:#3a2c12; color:#ffb454; border:1px solid #7a5416; }
+  code.cmd { display:block; background:#0c0e13; border:1px solid #2a3140; border-radius:6px;
+             padding:8px 12px; font-family:'Cascadia Code',monospace; font-size:12.5px; color:#7ee0a3; margin:5px 0; }
+  .stat { display:flex; gap:16px; margin-top:4px; font-size:12px; color:#667085; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🥔 Log<span>Analyzer</span> <span style="font-size:12px;color:#667085;">v1.0</span></div>
+  <div class="badge">model: kimi-k3 · via vleee</div>
+</header>
+<main>
+  <!-- LEFT: input -->
+  <section class="panel">
+    <h3>📥 Paste Log</h3>
+    <textarea spellcheck="false">Mar  3 09:14:02 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+Mar  3 09:14:07 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+Mar  3 09:14:22 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+Mar  3 09:14:27 core-sw01 %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+Mar  3 09:14:41 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down</textarea>
+    <div class="controls">
+      <select><option>🇮🇩 Bahasa Indonesia</option><option>🇬🇧 English</option><option>🇩🇪 Deutsch</option></select>
+      <button class="btn">⚡ Analyze</button>
+      <button class="btn ghost">Clear</button>
+      <button class="btn ghost">Load sample</button>
+    </div>
+    <div class="detect">🔍 Detected: <b>Cisco IOS</b> (switch syslog) · 5 events</div>
+  </section>
+
+  <!-- RIGHT: results -->
+  <section class="panel">
+    <h3>🧠 AI Analysis</h3>
+
+    <div class="result-block">
+      <h4>Severity</h4>
+      <span class="sev warn">⚠ WARNING — Interface Flapping</span>
+    </div>
+
+    <div class="result-block">
+      <h4>Ringkasan</h4>
+      <p>Interface Gi0/1 di core-sw01 flapping — up/down 3x dalam 40 detik. Bukan masalah config; pola ini hampir selalu layer 1 (fisik) atau NIC di ujung sana.</p>
+    </div>
+
+    <div class="result-block">
+      <h4>Kemungkinan Penyebab</h4>
+      <ul>
+        <li>1️⃣ Kabel/patch cord rusak atau konektor kendor <b>(paling umum)</b></li>
+        <li>2️⃣ NIC/end-device failing atau speed-duplex mismatch</li>
+        <li>3️⃣ Port switch mulai rusak (jarang, tapi mungkin)</li>
+      </ul>
+    </div>
+
+    <div class="result-block">
+      <h4>Command Berikutnya</h4>
+      <code class="cmd">show interfaces Gi0/1 | include errors|crc|input</code>
+      <code class="cmd">show interfaces Gi0/1 status</code>
+      <code class="cmd">show logging | include Gi0/1</code>
+      <code class="cmd">show interfaces counters errors</code>
+    </div>
+
+    <div class="result-block">
+      <h4>Rekomendasi</h4>
+      <p>Cek CRC/input errors dulu — kalau naik, ganti kabel. Kalau bersih, cek perangkat di ujung (reboot NIC, cek speed/duplex auto-negotiation).</p>
+    </div>
+
+    <div class="stat">⏱ 2.1s · 847 tokens · session: none (stateless)</div>
+  </section>
+</main>
+</body>
+</html>

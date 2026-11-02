@@ -1,0 +1,6 @@
+Mar  3 09:14:02 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+Mar  3 09:14:07 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+Mar  3 09:14:22 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+Mar  3 09:14:27 core-sw01 %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+Mar  3 09:14:41 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+Mar  3 09:15:02 core-sw01 %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
